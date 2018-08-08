@@ -1,0 +1,292 @@
+./bridge_restart.py -l adya -s aeshe5ahNgiefooj --log-level debug
+2017-10-25 12:18:18,678 : INFO : _new_conn : Starting new HTTP connection (1): monitor.prod.ghcg.com
+2017-10-25 12:18:18,891 : DEBUG : _make_request : "GET /modules/ HTTP/1.1" 200 None
+2017-10-25 12:18:19,134 : DEBUG : get : http://monitor.prod.ghcg.com/modules/
+2017-10-25 12:18:19,175 : WARNING : dictformer : broker-fix-bridge-ln-weekly bridge not appended to restart list due weekly schedule
+2017-10-25 12:18:19,175 : WARNING : dictformer : feed-fix-bridge-ln-weekly bridge not appended to restart list due weekly schedule
+2017-10-25 12:18:19,176 : DEBUG : sshconnect : initialized restarts of: 
+{'ny-tmx-bridges1.prod.ghcg.com': ['broker-fix-bridge-ny', 'feed-fix-bridge-ny'], 'eu-bridges2.prod.ghcg.com': ['broker-fix-bridge-eu', 'feed-fix-bridge-eu'], 'lon2-tmx.prod.ghcg.com': ['broker-fix-bridge-ld4', 'broker-fix-bridge-ln', 'feed-fix-bridge-ld4', 'feed-fix-bridge-ln'], 'godric.ghcg.com': ['broker-fix-bridge-dsp', 'feed-fix-bridge-dsp'], 'horus.ghcg.com': ['broker-fix-bridge-ld4', 'feed-fix-bridge-ld4'], 'irmo.ghcg.com': ['broker-fix-bridge-usa', 'feed-fix-bridge-usa']}
+2017-10-25 12:18:19,176 : DEBUG : sshconnect : connecting to adya@ny-tmx-bridges1.prod.ghcg.com
+2017-10-25 12:18:19,373 : DEBUG : _log : starting thread (client mode): 0x2330f358
+2017-10-25 12:18:19,374 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:18:19,520 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1.8
+2017-10-25 12:18:19,521 : INFO : _log : Connected (version 2.0, client OpenSSH_5.9p1)
+2017-10-25 12:18:19,656 : DEBUG : _log : kex algos:['ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:18:19,656 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:18:19,656 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:18:19,657 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:18:19,657 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:18:20,119 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:18:20,119 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:18:20,120 : DEBUG : _log : Adding ssh-rsa host key for ny-tmx-bridges1.prod.ghcg.com: b'acfb3fcdd48479be037412e2aa047d33'
+2017-10-25 12:18:20,120 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:18:20,431 : DEBUG : _log : userauth is OK
+2017-10-25 12:18:20,577 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:18:20,578 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:18:20,714 : DEBUG : _log : userauth is OK
+2017-10-25 12:18:20,858 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:18:20,858 : DEBUG : sshconnect : updating configs
+2017-10-25 12:18:20,859 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:18:21,252 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:18:21,253 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:18:21,390 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:18:21,528 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:18:21,529 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-ny
+2017-10-25 12:18:21,556 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:18:21,800 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:18:21,801 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:18:21,938 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:18:22,076 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:18:22,077 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:18:22,389 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:18:22,389 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:18:23,428 : DEBUG : _log : [chan 1] EOF received (1)
+2017-10-25 12:18:23,429 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:18:32,087 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-ny
+2017-10-25 12:18:32,088 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:18:32,225 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:18:32,225 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:18:32,362 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:18:32,500 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:18:33,521 : DEBUG : _log : [chan 2] EOF received (2)
+2017-10-25 12:18:33,521 : DEBUG : _log : [chan 2] EOF sent (2)
+2017-10-25 12:18:42,503 : DEBUG : sshconnect : connecting to adya@eu-bridges2.prod.ghcg.com
+2017-10-25 12:18:42,545 : DEBUG : _log : EOF in transport thread
+2017-10-25 12:18:42,603 : DEBUG : _log : starting thread (client mode): 0x1e55fc88
+2017-10-25 12:18:42,604 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:18:42,650 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1.8
+2017-10-25 12:18:42,650 : INFO : _log : Connected (version 2.0, client OpenSSH_5.9p1)
+2017-10-25 12:18:42,695 : DEBUG : _log : kex algos:['ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:18:42,696 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:18:42,696 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:18:42,696 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:18:42,697 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:18:42,801 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:18:42,802 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:18:42,804 : DEBUG : _log : Adding ssh-rsa host key for eu-bridges2.prod.ghcg.com: b'd7f34c1afc3f3b9ab8d5c97e2d3bb5a4'
+2017-10-25 12:18:42,806 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:18:42,927 : DEBUG : _log : userauth is OK
+2017-10-25 12:18:42,981 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:18:42,981 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:18:43,280 : DEBUG : _log : userauth is OK
+2017-10-25 12:18:43,330 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:18:43,331 : DEBUG : sshconnect : updating configs
+2017-10-25 12:18:43,331 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:18:43,921 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:18:43,921 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:18:43,967 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:18:44,012 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:18:44,013 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-eu
+2017-10-25 12:18:44,013 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:18:44,102 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:18:44,102 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:18:44,150 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:18:44,196 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:18:44,197 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:18:44,325 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:18:44,325 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:18:44,408 : DEBUG : _log : [chan 1] EOF received (1)
+2017-10-25 12:18:44,409 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:18:54,208 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-eu
+2017-10-25 12:18:54,209 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:18:54,254 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:18:54,255 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:18:54,551 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:18:54,598 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:18:54,727 : DEBUG : _log : [chan 2] EOF received (2)
+2017-10-25 12:18:54,728 : DEBUG : _log : [chan 2] EOF sent (2)
+2017-10-25 12:19:04,601 : DEBUG : sshconnect : connecting to adya@lon2-tmx.prod.ghcg.com
+2017-10-25 12:19:04,655 : DEBUG : _log : EOF in transport thread
+2017-10-25 12:19:04,692 : DEBUG : _log : starting thread (client mode): 0x1e562b38
+2017-10-25 12:19:04,692 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:19:04,774 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1.8
+2017-10-25 12:19:04,775 : INFO : _log : Connected (version 2.0, client OpenSSH_5.9p1)
+2017-10-25 12:19:04,843 : DEBUG : _log : kex algos:['ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:19:04,844 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:19:04,844 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:19:04,844 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:19:04,845 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:19:04,980 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:19:04,981 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:19:04,982 : DEBUG : _log : Adding ssh-rsa host key for lon2-tmx.prod.ghcg.com: b'94e141ec10c642af86895976bdf9e485'
+2017-10-25 12:19:04,984 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:19:05,161 : DEBUG : _log : userauth is OK
+2017-10-25 12:19:05,239 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:19:05,240 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:19:05,309 : DEBUG : _log : userauth is OK
+2017-10-25 12:19:05,384 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:19:05,385 : DEBUG : sshconnect : updating configs
+2017-10-25 12:19:05,385 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:19:07,057 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:19:07,057 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:19:07,126 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:19:07,196 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:19:07,197 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-ld4
+2017-10-25 12:19:07,198 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:19:07,334 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:19:07,334 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:19:07,504 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:19:07,575 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:19:07,576 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:19:07,757 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:19:07,758 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:19:07,990 : DEBUG : _log : [chan 1] EOF received (1)
+2017-10-25 12:19:07,991 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:19:17,579 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-ln
+2017-10-25 12:19:17,579 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:19:17,650 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:19:17,651 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:19:17,721 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:19:17,792 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:19:18,096 : DEBUG : _log : [chan 2] EOF received (2)
+2017-10-25 12:19:18,096 : DEBUG : _log : [chan 2] EOF sent (2)
+2017-10-25 12:19:27,803 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-ld4
+2017-10-25 12:19:27,804 : DEBUG : _log : [chan 3] Max packet in: 32768 bytes
+2017-10-25 12:19:27,873 : DEBUG : _log : [chan 3] Max packet out: 32768 bytes
+2017-10-25 12:19:27,874 : DEBUG : _log : Secsh channel 3 opened.
+2017-10-25 12:19:28,017 : DEBUG : _log : [chan 3] Sesch channel 3 request ok
+2017-10-25 12:19:28,088 : DEBUG : _log : [chan 3] Sesch channel 3 request ok
+2017-10-25 12:19:28,395 : DEBUG : _log : [chan 3] EOF received (3)
+2017-10-25 12:19:28,396 : DEBUG : _log : [chan 3] EOF sent (3)
+2017-10-25 12:19:38,099 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-ln
+2017-10-25 12:19:38,100 : DEBUG : _log : [chan 4] Max packet in: 32768 bytes
+2017-10-25 12:19:38,168 : DEBUG : _log : [chan 4] Max packet out: 32768 bytes
+2017-10-25 12:19:38,169 : DEBUG : _log : Secsh channel 4 opened.
+2017-10-25 12:19:38,239 : DEBUG : _log : [chan 4] Sesch channel 4 request ok
+2017-10-25 12:19:38,310 : DEBUG : _log : [chan 4] Sesch channel 4 request ok
+2017-10-25 12:19:38,621 : DEBUG : _log : [chan 4] EOF received (4)
+2017-10-25 12:19:38,622 : DEBUG : _log : [chan 4] EOF sent (4)
+2017-10-25 12:19:48,315 : DEBUG : sshconnect : connecting to adya@godric.ghcg.com
+2017-10-25 12:19:48,349 : DEBUG : _log : EOF in transport thread
+2017-10-25 12:19:48,460 : DEBUG : _log : starting thread (client mode): 0x1e8b7278
+2017-10-25 12:19:48,461 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:19:48,556 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1.8
+2017-10-25 12:19:48,557 : INFO : _log : Connected (version 2.0, client OpenSSH_5.9p1)
+2017-10-25 12:19:48,645 : DEBUG : _log : kex algos:['ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:19:48,645 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:19:48,646 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:19:48,647 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:19:48,647 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:19:48,801 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:19:48,802 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:19:48,804 : DEBUG : _log : Adding ssh-rsa host key for godric.ghcg.com: b'3283badf86ac247a005969cd42c09aef'
+2017-10-25 12:19:48,804 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:19:49,030 : DEBUG : _log : userauth is OK
+2017-10-25 12:19:49,130 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:19:49,131 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:19:49,228 : DEBUG : _log : userauth is OK
+2017-10-25 12:19:49,327 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:19:49,328 : DEBUG : sshconnect : updating configs
+2017-10-25 12:19:49,328 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:19:49,830 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:19:49,830 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:19:49,925 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:19:50,020 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:19:50,021 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-dsp
+2017-10-25 12:19:50,021 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:19:50,199 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:19:50,199 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:19:50,290 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:19:50,381 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:19:50,381 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:19:50,659 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:19:50,659 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:20:00,391 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-dsp
+2017-10-25 12:20:00,392 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:20:00,483 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:20:00,483 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:20:00,574 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:00,671 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:00,672 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:20:00,889 : DEBUG : _log : Ignoring message for dead channel 1
+2017-10-25 12:20:00,890 : DEBUG : _log : Ignoring message for dead channel 1
+2017-10-25 12:20:10,679 : DEBUG : sshconnect : connecting to adya@horus.ghcg.com
+2017-10-25 12:20:10,712 : DEBUG : _log : EOF in transport thread
+2017-10-25 12:20:10,844 : DEBUG : _log : starting thread (client mode): 0x1e8c7c50
+2017-10-25 12:20:10,844 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:20:10,910 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_6.6p1 Ubuntu-2~precise1
+2017-10-25 12:20:10,910 : INFO : _log : Connected (version 2.0, client OpenSSH_6.6p1)
+2017-10-25 12:20:10,972 : DEBUG : _log : kex algos:['curve25519-sha256@libssh.org', 'ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5-etm@openssh.com', 'hmac-sha1-etm@openssh.com', 'umac-64-etm@openssh.com', 'umac-128-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha1-96-etm@openssh.com', 'hmac-md5-96-etm@openssh.com', 'hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'umac-128@openssh.com', 'hmac-sha2-256', 'hmac-sha2-512', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5-etm@openssh.com', 'hmac-sha1-etm@openssh.com', 'umac-64-etm@openssh.com', 'umac-128-etm@openssh.com', 'hmac-sha2-256-etm@openssh.com', 'hmac-sha2-512-etm@openssh.com', 'hmac-ripemd160-etm@openssh.com', 'hmac-sha1-96-etm@openssh.com', 'hmac-md5-96-etm@openssh.com', 'hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'umac-128@openssh.com', 'hmac-sha2-256', 'hmac-sha2-512', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:20:10,972 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:20:10,972 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:20:10,972 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:20:10,973 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:20:11,097 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:20:11,098 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:20:11,100 : DEBUG : _log : Adding ssh-rsa host key for horus.ghcg.com: b'2808e601faedf4d4ebc48fe2c8fcdb87'
+2017-10-25 12:20:11,101 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:20:11,267 : DEBUG : _log : userauth is OK
+2017-10-25 12:20:11,344 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:20:11,344 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:20:11,417 : DEBUG : _log : userauth is OK
+2017-10-25 12:20:11,490 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:20:11,491 : DEBUG : sshconnect : updating configs
+2017-10-25 12:20:11,491 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:20:11,584 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:20:11,584 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:20:11,647 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:20:11,710 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:20:11,710 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-ld4
+2017-10-25 12:20:11,711 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:20:11,834 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:20:11,834 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:20:11,897 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:20:11,961 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:20:11,962 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:20:12,206 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:20:12,207 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:20:12,287 : DEBUG : _log : [chan 1] EOF received (1)
+2017-10-25 12:20:12,288 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:20:21,966 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-ld4
+2017-10-25 12:20:21,966 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:20:22,029 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:20:22,030 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:20:22,093 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:22,156 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:22,381 : DEBUG : _log : [chan 2] EOF received (2)
+2017-10-25 12:20:22,382 : DEBUG : _log : [chan 2] EOF sent (2)
+2017-10-25 12:20:32,167 : DEBUG : sshconnect : connecting to adya@irmo.ghcg.com
+2017-10-25 12:20:32,209 : DEBUG : _log : EOF in transport thread
+2017-10-25 12:20:32,411 : DEBUG : _log : starting thread (client mode): 0x1ca60a20
+2017-10-25 12:20:32,411 : DEBUG : _log : Local version/idstring: SSH-2.0-paramiko_2.1.2
+2017-10-25 12:20:32,588 : DEBUG : _log : Remote version/idstring: SSH-2.0-OpenSSH_5.9p1 Debian-5ubuntu1.8
+2017-10-25 12:20:32,588 : INFO : _log : Connected (version 2.0, client OpenSSH_5.9p1)
+2017-10-25 12:20:32,748 : DEBUG : _log : kex algos:['ecdh-sha2-nistp256', 'ecdh-sha2-nistp384', 'ecdh-sha2-nistp521', 'diffie-hellman-group-exchange-sha256', 'diffie-hellman-group-exchange-sha1', 'diffie-hellman-group14-sha1', 'diffie-hellman-group1-sha1'] server key:['ssh-rsa', 'ssh-rsa-cert-v01@openssh.com'] client encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] server encrypt:['aes128-ctr', 'aes192-ctr', 'aes256-ctr', 'aes128-cbc', '3des-cbc', 'blowfish-cbc', 'cast128-cbc', 'aes192-cbc', 'aes256-cbc'] client mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] server mac:['hmac-md5', 'hmac-sha1', 'umac-64@openssh.com', 'hmac-sha2-256', 'hmac-sha2-256-96', 'hmac-sha2-512', 'hmac-sha2-512-96', 'hmac-ripemd160', 'hmac-ripemd160@openssh.com', 'hmac-sha1-96', 'hmac-md5-96'] client compress:['none', 'zlib@openssh.com'] server compress:['none', 'zlib@openssh.com'] client lang:[''] server lang:[''] kex follows?False
+2017-10-25 12:20:32,749 : DEBUG : _log : Kex agreed: diffie-hellman-group1-sha1
+2017-10-25 12:20:32,749 : DEBUG : _log : Cipher agreed: aes128-ctr
+2017-10-25 12:20:32,749 : DEBUG : _log : MAC agreed: hmac-sha2-256
+2017-10-25 12:20:32,750 : DEBUG : _log : Compression agreed: none
+2017-10-25 12:20:32,969 : DEBUG : _log : kex engine KexGroup1 specified hash_algo <built-in function openssl_sha1>
+2017-10-25 12:20:32,970 : DEBUG : _log : Switch to new keys ...
+2017-10-25 12:20:32,972 : DEBUG : _log : Adding ssh-rsa host key for irmo.ghcg.com: b'0cfbc0d9b93bef3c0259dbceb90efe02'
+2017-10-25 12:20:32,973 : DEBUG : _log : Trying SSH agent key b'f6cf9d85a18e0093b70f0882e996274e'
+2017-10-25 12:20:33,324 : DEBUG : _log : userauth is OK
+2017-10-25 12:20:33,492 : INFO : _log : Authentication (publickey) failed.
+2017-10-25 12:20:33,493 : DEBUG : _log : Trying SSH agent key b'6c2e77d5a03a283ff3677da85c6a1aea'
+2017-10-25 12:20:33,652 : DEBUG : _log : userauth is OK
+2017-10-25 12:20:33,818 : INFO : _log : Authentication (publickey) successful!
+2017-10-25 12:20:33,818 : DEBUG : sshconnect : updating configs
+2017-10-25 12:20:33,819 : DEBUG : _log : [chan 0] Max packet in: 32768 bytes
+2017-10-25 12:20:35,553 : DEBUG : _log : [chan 0] Max packet out: 32768 bytes
+2017-10-25 12:20:35,553 : DEBUG : _log : Secsh channel 0 opened.
+2017-10-25 12:20:35,714 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:20:35,878 : DEBUG : _log : [chan 0] Sesch channel 0 request ok
+2017-10-25 12:20:35,879 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` broker-fix-bridge-usa
+2017-10-25 12:20:35,880 : DEBUG : _log : [chan 1] Max packet in: 32768 bytes
+2017-10-25 12:20:36,195 : DEBUG : _log : [chan 1] Max packet out: 32768 bytes
+2017-10-25 12:20:36,195 : DEBUG : _log : Secsh channel 1 opened.
+2017-10-25 12:20:36,355 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:20:36,517 : DEBUG : _log : [chan 1] Sesch channel 1 request ok
+2017-10-25 12:20:36,517 : DEBUG : _log : [chan 0] EOF sent (0)
+2017-10-25 12:20:36,878 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:20:36,878 : DEBUG : _log : Ignoring message for dead channel 0
+2017-10-25 12:20:37,596 : DEBUG : _log : [chan 1] EOF received (1)
+2017-10-25 12:20:37,597 : DEBUG : _log : [chan 1] EOF sent (1)
+2017-10-25 12:20:46,529 : DEBUG : sshconnect : sudo -k /etc/scripts/plan_restart.sh `date --date='TZ="America/New_York" 16:59' --utc +%H:%M` feed-fix-bridge-usa
+2017-10-25 12:20:46,530 : DEBUG : _log : [chan 2] Max packet in: 32768 bytes
+2017-10-25 12:20:46,688 : DEBUG : _log : [chan 2] Max packet out: 32768 bytes
+2017-10-25 12:20:46,689 : DEBUG : _log : Secsh channel 2 opened.
+2017-10-25 12:20:46,849 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:47,011 : DEBUG : _log : [chan 2] Sesch channel 2 request ok
+2017-10-25 12:20:47,895 : DEBUG : _log : [chan 2] EOF received (2)
+2017-10-25 12:20:47,895 : DEBUG : _log : [chan 2] EOF sent (2)

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Techsupport monitoring</title>
+</head>
+<style type="text/css">
+    html, body {
+        height: 99%;
+        padding: 0px;
+    }
+    iframe {
+        width: 100%;
+        height: 100%;
+        padding: 0px;
+        margin: 0px;
+        border: none;
+    }
+    #monitor {
+        float: left;
+    }
+<!--    #zabbix {
+        float: right;
+}-->
+</style>
+<!--<script language="JavaScript">
+    window.onload = function () {
+        var zabbix_frame = document.getElementById('zabbix');
+        zabbix_frame.onload = function () {
+            setInterval(function () {
+                console.log('Zabbix frame was not updated for long time, force update');
+                zabbix_frame.contentWindow.location.reload();
+            }, 45000);
+        }
+    }
+</script>-->
+<body>
+
+<iframe src="http://monitor.exante.eu/" id="monitor"></iframe>
+<!--<iframe src="https://monitor.exante.eu/zabbix/tr_status.php" id="zabbix"></iframe>-->
+
+</body>
+</html>
