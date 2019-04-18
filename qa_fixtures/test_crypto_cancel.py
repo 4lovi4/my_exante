@@ -16,12 +16,14 @@ import DNS
 
 from urllib.parse import urlparse
 
-TIMEOUT = 3.5
-CON_TIMEOUT = 1.65
+TIMEOUT = 5
+CON_TIMEOUT = 0.5
 DISC_TIMEOUT = 0.9
-PLACE_TIMEOUT = 0.01
+PLACE_TIMEOUT = 0.3
 
-blocking_hosts = ('api.hitbtc.com', 'www.bitmex.com', 'api.bitfinex.com')
+blocking_hosts = ('api.hitbtc.com', 'www.bitmex.com', 'api.bitfinex.com',
+                  'api.globitex.com', 'api.coinsuper.com', 'api.binance.com',
+                  'stream.binance.com', 'cex.io', 'bittrex.com', 'kuna.io')
 
 def broker_proc(brc_path):
     if os.path.exists(brc_path):
@@ -37,8 +39,8 @@ def broker_proc(brc_path):
     return proc
 
 def __put(stdin, payload:dict):
-    #logging.debug('sending {}'.format(str(payload)))
-    print('sending {}'.format(str(payload)))
+    logging.debug('sending {}'.format(str(payload)))
+    #print('sending {}'.format(str(payload)))
     stdin.write('{}\n'.format(json.dumps(payload)).encode('utf-8'))
     stdin.flush()
 
@@ -47,11 +49,12 @@ def read_out(proc:subprocess.Popen):
     resp = None
     for line in iter(proc.stdout.readline, b''):
         resp = json.loads(line.decode('utf-8'))
-        #logging.debug(str(resp))
-        print(str(resp))
+        logging.debug(str(resp))
+        #print(str(resp))
         if resp.get('state') == 'closed' \
                 and resp.get('event') == 'connection_state':
             break
+    return resp
 
 def terminate_proc(proc:subprocess.Popen):
     proc.stdin.close()
@@ -76,7 +79,8 @@ def disconnect(proc:subprocess.Popen, con_id):
     __put(proc.stdin, payload)
 
 def place(proc:subprocess.Popen, con_id, username, acc,
-          instrument, side, qty, order_type, duration, **kwargs):
+          instrument, side, qty, order_type, duration,
+          brokerAccount_name=None, brokerAccount_clientid=None,**kwargs):
     order_id = str(uuid.uuid4())
     payload = {
         'command': 'place',
@@ -85,8 +89,8 @@ def place(proc:subprocess.Popen, con_id, username, acc,
         'username': username,
         'exanteAccount': acc,
         'brokerAccount': {
-            'name': None,
-            'clientId': None
+            'name': brokerAccount_name,
+            'clientId': brokerAccount_clientid
         },
         'orderParameters': {
             'instrument': instrument,
@@ -101,6 +105,26 @@ def place(proc:subprocess.Popen, con_id, username, acc,
 
     return(order_id)
 
+def place_market(proc:subprocess.Popen, con_id, username, acc,
+                 instrument, side, qty, duration,
+                 brokerAccount_name=None, brokerAccount_clientid=None):
+    return place(proc, con_id=con_id, username=username, acc=acc,
+                 instrument=instrument, side=side,
+                 qty=float(qty), order_type='market',
+                 duration=duration,
+                 brokerAccount_name=brokerAccount_name,
+                 brokerAccount_clientid=brokerAccount_clientid)
+
+def place_limit(proc:subprocess.Popen, con_id, username, acc,
+                instrument, side, qty, duration, limit_price,
+                brokerAccount_name=None, brokerAccount_clientid=None):
+    return place(proc, con_id=con_id, username=username, acc=acc,
+                 instrument=instrument, side=side,
+                 qty=float(qty), order_type='limit',
+                 duration=duration, brokerAccount_name=brokerAccount_name,
+                 brokerAccount_clientid=brokerAccount_clientid,
+                 limitPrice=float(limit_price))
+
 def cancel (proc:subprocess.Popen, con_id, order_id, username):
     new_mod_id = str(uuid.uuid4())
     payload = {
@@ -114,12 +138,23 @@ def cancel (proc:subprocess.Popen, con_id, order_id, username):
     __put(proc.stdin, payload)
 
 def connect_gw(gw_url):
-    gw_srv = re.sub(r'broker\://', '_broker2._tcp.', gw_url)
-    DNS.ParseResolvConf()
-    srv_req = DNS.Request(qtype='srv')
-    srv_resp = srv_req.req(gw_srv)
-    gw_host = srv_resp.answers[0]['data'][-1]
-    logging.debug('gw hostname: {}'.format(gw_host))
+    if re.search(r'^feed', gw_url):
+        gw_srv = re.sub(r'feed\://', '_feed._tcp.', gw_url)
+        srv = True
+    elif re.search(r'^broker', gw_url):
+        gw_srv = re.sub(r'broker\://', '_broker2._tcp.', gw_url)
+        srv = True
+    elif re.search(r'^.*\..*\.zorg|ghcg.sh|com$', gw_url):
+        gw_host = gw_url
+        srv = False
+    else:
+        return None
+    if srv:
+        DNS.ParseResolvConf()
+        srv_req = DNS.Request(qtype='srv')
+        srv_resp = srv_req.req(gw_srv)
+        gw_host = srv_resp.answers[0]['data'][-1]
+        logging.debug('gw hostname: {}'.format(gw_host))
 
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy)
@@ -133,13 +168,16 @@ def resolve_hosts(host_list, gw_url):
     DNS.ParseResolvConf()
     dns_request = DNS.Request()
     ip_list = list()
+    if url_base == 'metacrypto':
+        url_base = 'bitfinex'
     regex = re.compile(url_base)
     filtered_host = filter(regex.search, host_list)
     for hostname in filtered_host:
         dns_resp = dns_request.req(hostname)
         item = {hostname: list()}
         for ans in dns_resp.answers:
-            item[hostname].append(ans.get('data'))
+            if re.match(r'\d+\.\d+\.\d+\.\d+', ans.get('data')):
+                item[hostname].append(ans.get('data'))
         ip_list.append(item)
     return(ip_list)
 
@@ -150,6 +188,20 @@ def send_comand(ssh_client, com):
         logging.debug(out)
     except paramiko.SSHException as err:
         logging.debug('error while executing the command {}'.format(str(err)))
+
+def kill_con(ssh_client:paramiko.SSHClient, host_list):
+    for host in host_list:
+        for domen, ips in host.items():
+            comand = 'tcpkill -9 host {0} > /dev/null 2>&1 &'.\
+                format(domen)
+            send_comand(ssh_client, comand)
+
+def unkill_con(ssh_client:paramiko.SSHClient, host_list):
+    for host in host_list:
+        for domen, ips in host.items():
+            for ip in ips:
+                comand = 'sudo killall tcpkill'
+                send_comand(ssh_client, comand)
 
 def drop_con(ssh_client:paramiko.SSHClient, host_list):
     for host in host_list:
@@ -201,7 +253,9 @@ if __name__ == '__main__':
                         level=loglevel)
 
     proc = broker_proc(args.path)
+
     con_id = connect(proc, args.gw_url)
+
     #t = threading.Thread(target=read_out, name='get_stdout', args=(proc,))
     #t.start()
 
@@ -209,21 +263,35 @@ if __name__ == '__main__':
 
     host_list = resolve_hosts(blocking_hosts, args.gw_url)
 
+    print('connection established with {}'.format(con_id))
+
     time.sleep(CON_TIMEOUT)
 
-    order_id = place(proc, con_id=con_id, username=args.user, acc=args.acc,
-                     instrument=args.instrument, side=args.side,
-                     qty=float(args.qty), order_type=args.type,
-                     duration=args.duration, limitPrice=float(args.limit_price))
+    if args.type == 'market':
+        order_id = place_market(proc, con_id, args.user, args.acc,
+                            args.instrument, args.side,
+                            args.qty, duration=args.duration)
+    elif args.type == 'limit':
+        order_id = place_limit(proc, con_id, args.user, args.acc,
+                               args.instrument, args.side, args.qty,
+                               args.duration, args.limit_price)
+    else:
+        pass
 
-    time.sleep(1)
+    time.sleep(PLACE_TIMEOUT)
 
     #tc = threading.Timer(0.005, cancel, args=(proc, con_id, order_id, args.user))
     cancel(proc, con_id, order_id, args.user)
 
     drop_con(ssh_client, host_list)
 
-    time.sleep(30.0)
+    #for i in range(5):
+    #    time.sleep(0.1)
+    #    cancel(proc, con_id, order_id, args.user)
+
+    time.sleep(TIMEOUT)
+
+    cancel(proc, con_id, order_id, args.user)
 
     enable_con(ssh_client, host_list)
 
@@ -236,4 +304,4 @@ if __name__ == '__main__':
     try:
         terminate_proc(proc)
     except subprocess.TimeoutExpired as err:
-        logging.debug('{}'.format(err))
+        logging.debug('error during termination: {}'.format(err))

@@ -1,0 +1,7 @@
+requests
+pytest
+retrying
+psycopg2
+selenium
+pyyaml
+
