@@ -23,7 +23,8 @@ PLACE_TIMEOUT = 0.3
 
 blocking_hosts = ('api.hitbtc.com', 'www.bitmex.com', 'api.bitfinex.com',
                   'api.globitex.com', 'api.coinsuper.com', 'api.binance.com',
-                  'stream.binance.com', 'cex.io', 'bittrex.com', 'kuna.io')
+                  'stream.binance.com', 'cex.io', 'bittrex.com', 'kuna.io',
+                  'real.okcoin.com')
 
 def broker_proc(brc_path):
     if os.path.exists(brc_path):

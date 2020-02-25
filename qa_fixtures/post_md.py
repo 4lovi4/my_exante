@@ -1,61 +1,105 @@
 #!/usr/bin/env python3
 #-*- coding: utf-8 -*-
-
+import _json
 import requests
 import json
 import argparse
 import logging
 
-gw_url = 'http://internal-gateways.{env}.zorg.sh:8081/{end}'
-tickdb_url = 'http://tickdb3.{env}.zorg.sh/quote_api/v1/export/symbols/{sym}/{end}/'
+gw_urls = {
+        'test': 'http://internal-gateways.test.zorg.sh:8081/{end}',
+        'stage': 'http://gateways2.stage.zorg.sh:8081/{end}',
+        'prod': 'http://internal-gateways.prod.ghcg.com:8081/{end}',
+        'cprod': 'http://cryptogw4.cprod.zorg.sh:8081/{end}'
+    }
+
 gw_head = {'Content-Type': 'application/json'}
 
 
-def post_quotes(symbol, data, env='test'):
-    end = 'feed/quotes'
+def post_data(url, end, data):
     try:
-         res = requests.post(url = gw_url.format(env=env, end=end), json=data, headers=gw_head)
-         print('posting:', res.url, res.status_code, res.text)
+        res = requests.post(url=url.format(end=end), json=data, headers=gw_head)
+        logging.debug('posting: {} {} {}'.format(res.url, res.status_code, res.text))
+        return res
     except Exception as err:
-         print('Error occured:', err)
-         return None
+        logging.debug('Error occurred: {}'.format(err))
+        return None
+
+def post_quotes(env, quotes_data):
+    return post_data(url=gw_urls.get(env), end='feed/quote', data=quotes_data)
+
+def form_quote(symbol, bid_price=None, ask_price=None, bid_size=None, ask_size=None,
+               timestamp=None, skip_validate=False):
+    quote = {
+        'symbol': symbol,
+        'bid': {},
+        'ask': {},
+        'timestamp': timestamp,
+        'skipValidation': skip_validate
+    }
+
+    quote['bid'] = {'levels': [{'price': bid_price, 'size': bid_size}]}
+    quote['ask'] = {'levels': [{'price': ask_price, 'size': ask_size}]}
+
+    if timestamp is None:
+        del quote['timestamp']
+
+    if bid_price is None:
+        quote['bid'] = {}
+
+    if ask_price is None:
+        quote['ask'] = {}
+
+    return quote
 
 
-def copy_prod_quotes(origin, copy=None, env='test'):
-    end = 'quotes'
-    if copy is None:
-        post_to_sym = origin
-    else:
-        post_to_sym = copy
-        origin_sym = origin
-        tdb_params = {'limit': '1'}
-        try:
-            res = requests.get(url = tickdb_url.format(env='prod', sym=origin_sym, end='quotes'), params=tdb_params)
-            tdb_quotes = res.json()[0]
-        except Exception as err:
-            print(res.url, 'Error occured:', err)
-            return None
-    data = dict()
-    data.update({'symbol': post_to_sym,
-                  'bid': {'yield': tdb_quotes['bid']['yield'], 
-                          'levels': [{'price': tdb_quotes['bid']['pricedata'][0]['price'], 
-                                      'size': tdb_quotes['bid']['pricedata'][0]['size']}]},
-                  'ask': {'yield': tdb_quotes['ask']['yield'], 
-                          'levels': [{'price': tdb_quotes['ask']['pricedata'][0]['price'], 
-                                      'size': tdb_quotes['ask']['pricedata'][0]['size']}]}})
-    post_quotes(post_to_sym, data=data,env=env) 
+def post_trades():
+    pass
+
+
+def post_bond_data():
+    pass
+
+
+def post_option_data():
+    pass
+
+
+def post_aux_data():
+    pass
+
+
+def del_quote():
+    pass
+
+
+def post_error():
+    pass
+
 if __name__ == '__main__':
-    logger = logging.Logger()
     aparser = argparse.ArgumentParser()
-    #aparser.add_argument('command', choices=['post', 'copy'])
-    #aparser.add_argument('symbols', nargs=argparse.REMAINDER)
+    aparser.add_argument('-e', '--env', choices=('test', 'stage', 'cprod', 'prod'),
+                        default='test')
+    aparser.add_argument('symbol', type=str)
+    aparser.add_argument('mdtype', choices=('quote', 'trade', 'aux', 'bond', 'option'))
+    aparser.add_argument('--bid-price', default=None)
+    aparser.add_argument('--ask-price', default=None)
+    aparser.add_argument('--ask-size', default=None)
+    aparser.add_argument('--bid-size', default=None)
+    aparser.add_argument('--trade')
+    aparser.add_argument('--bond-data')
+    aparser.add_argument('--option-data')
+    aparser.add_argument('--aux-data')
+    aparser.add_argument('--log-level', default='info', choices=('info', 'debug', 'error', 'warn'))
+    args=aparser.parse_args()
 
-    subparsers = aparser.add_subparsers()
-    parse_copy = subparsers.add_parser('copy')
-    parse_copy.add_argument('symbols', nargs='+')
-    parse_copy = subparsers.add_parser('post')
-    parse_copy.add_argument('symbol', nargs=1)
+    logging.basicConfig(level=args.log_level.upper())
 
-    args = aparser.parse_args()
+    if args.mdtype == 'quote':
+        quote = form_quote(args.symbol, bid_price=args.bid_price, bid_size=args.bid_size,
+                           ask_price=args.ask_price, ask_size=args.ask_size)
 
-    print('test', args) 
+        try:
+            print(post_quotes(env=args.env, quotes_data=quote).status_code)
+        except Exception as err:
+            logging.debug(str(err))
